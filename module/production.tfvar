@@ -1,0 +1,4 @@
+cidr_block    = "173.31.8.0/24"
+vpc_id                    = "vpc-08b1aafa0b892ad8b"
+region                    = "eu-west-2"
+
