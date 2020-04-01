@@ -1,26 +1,35 @@
 # Steps to take in executing terrafofrm tfvar for multi-environment build.
 
-# Step One: Create a user profile in AWS, follow step 2-4 (User should have programatic and console access)
-# Step 2: Copy/Download Secret & Access key to local box.
-# Step 3: Save secret & Access Keys to "~/.aws/credentials" on your local box
-# Step 4: Run "aws configure" on local box and enter credentials
+* [Step 1:] Create a user profile in AWS, follow step 2-4 (User should have programatic and console access)
+* [Step 2:] Copy/Download Secret & Access key to local box.
+* [Step 3:] Save secret & Access Keys to "~/.aws/credentials" on your local box
+* [Step 4:] Run "aws configure" on local box and enter credentials
 
-# To Run terraform tfvar for individual environement, follow the below steps:
+# To Run terraform tfvar for individual environment, follow the below steps:
 
-# Step 1: Navigate to resource root e.g "Subnet" [For this example, subnet is the only resource created, so you are the root by the default]
-# step 2: run "terraform init"
-# step 3: run "terraform plan -var-file=/path/to/where/environment/tfvar/is/located 
+* [Step 1:] Navigate to the root of your project eg. sample-tfvar-subnet
+* [Step 2:] run "terraform init"
+* [Step 3:] run "terraform plan -var-file=/path/to/where/environment/tfvar/is/located
 
-# e.g "terraform plan -var-file=/home/sunky/Documents/subnet/module/production.tfvar" as this is pointing to production.tfvar, it will plan subnet in production environment.]
+e.g. For a plan of the production environment:
+```
+terraform plan -var-file=environments/production/terraform.tfvar
+```
 
-# [e.g terraform apply -var-file=/home/sunky/Documents/Newterraform/ami/module/staging.tfvar] this will build resources in staging environment.]
+e.g. To apply changes into the staging environment.
+```
+terraform apply -var-file=environments/staging/terraform.tfvar
+```
 
-# Using the subnet example: the above will build subnet in separate environment defined in the tfvar.
+Using the subnet example: the above will build subnet in separate environment defined in the tfvar.
 
-# step 4: run "terraform destroy" -var-file=/path/to/where/tfvar/ .
-# [e.g terraform destry -var-file=/home/sunky/Documents/Newterraform/ami/module/production.tfvar] this will destroy the resources in production environment.]
+* [Step 4:] run "terraform destroy" -var-file=/path/to/where/tfvar/ .
+e.g. To destroy the resources in production environment:
+```
+terraform destroy -var-file=environments/production/terraform.tfvar
+```
 
-# The tfvar helps with isolation. Only the resources and environment will be affected in the build and destroy event. It will not bring the whole infrastructure down. '''
-~                                                                                                                                                                        
-~                                                                                                                                                                        
-~                             
+The tfvar helps with isolation. Only the resources and environment will be affected in the build and destroy event. It will not bring the whole infrastructure down. '''
+~
+~
+~
